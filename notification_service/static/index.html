@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #444;
+            text-align: center;
+        }
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            margin-right: 5px;
+            cursor: pointer;
+            background-color: #6c757d;
+            color: white;
+            border-radius: 5px 5px 0 0;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .tab:hover {
+            background-color: #495057;
+        }
+        .tab.active {
+            background-color: #fff;
+            color: #495057;
+            font-weight: bold;
+            border-bottom: 1px solid #fff;
+        }
+        .tab-content {
+            border: 1px solid #ccc;
+            border-radius: 0 5px 5px 5px;
+            padding: 20px;
+            background-color: #fff;
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        input, textarea, select, button {
+            margin-bottom: 10px;
+            padding: 10px;
+            width: calc(100% - 22px);
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        pre {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+    </style>
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById(`${tabId}-content`).classList.add('active');
+        }
+
+        async function sendNotification() {
+            const response = await fetch('/notify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    recipient: document.getElementById('recipient').value,
+                    message: document.getElementById('message').value,
+                    type: document.getElementById('type').value
+                })
+            });
+            const data = await response.json();
+            document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+        }
+
+        async function getNotification() {
+            const notificationId = document.getElementById('notification_id').value;
+            const response = await fetch(`/notifications/${notificationId}`);
+            const data = await response.json();
+            document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+        }
+    </script>
+</head>
+<body>
+    <h1>Notification Service</h1>
+    <div class="tab-container">
+        <div class="tab active" id="send-tab" onclick="switchTab('send-tab')">Send Notification</div>
+        <div class="tab" id="get-tab" onclick="switchTab('get-tab')">Get Notification</div>
+    </div>
+    
+    <div class="tab-content active" id="send-tab-content">
+        <h2>Send Notification</h2>
+        <input type="text" id="recipient" placeholder="Recipient"><br>
+        <textarea id="message" placeholder="Message"></textarea><br>
+        <select id="type">
+            <option value="email">Email</option>
+            <option value="sms">SMS</option>
+        </select><br>
+        <button onclick="sendNotification()">Send Notification</button>
+    </div>
+    
+    <div class="tab-content" id="get-tab-content">
+        <h2>Get Notification</h2>
+        <input type="number" id="notification_id" placeholder="Notification ID"><br>
+        <button onclick="getNotification()">Get Notification</button>
+    </div>
+
+    <h2>Result</h2>
+    <pre id="result"></pre>
+</body>
+</html>
+
