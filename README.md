@@ -31,15 +31,19 @@ The objective of this project is to develop a **microservices-based Hospital Man
 
 2. **Navigate to the project directory**:
     ```bash
-    cd hospital-management-main
+    cd hospital-management/appointment-service
     ```
 
-3. **Build and start all services using Docker Compose**:
+3. **Build service**:
     ```bash
-    docker-compose up --build
+    docker build -t appointment-service:latest .
+    ```
+4. **Start the container**:
+    ```bash
+    docker-compose up -d
     ```
 
-4. **Access the services at their respective endpoints**.
+5. **Access the services at their respective endpoints**.
 
 ### How to Run the Project
 The **Hospital Management System** is structured as independent microservices that communicate through HTTP APIs. Each service manages its respective database using **SQLite** and exposes RESTful endpoints to other services. **Docker Compose** handles service orchestration, making it easy to scale, maintain, and deploy the system in different environments.
