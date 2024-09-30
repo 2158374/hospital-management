@@ -57,7 +57,3 @@ The **Hospital Management System** is structured as independent microservices th
 ## Scalability and Upcoming Improvements
 - **Horizontal scaling**: To accommodate increasing workloads, each service can be scaled separately.
 - **Security Enhancements**: To improve security, include authorization and authentication methods (like OAuth).
-
-## Conclusion
-This project demonstrates a modular and scalable approach to hospital management, leveraging the power of microservices architecture, **Docker**, and **Flask** for improved patient care and operational efficiency.
-
