@@ -46,9 +46,9 @@ The **Hospital Management System** is structured as independent microservices th
 
 ### Services Endpoints
 - **Patient Service**: `http://34.45.137.121:5001`
-- **Doctor Service**: `http://localhost:5002`
-- **Appointment Service**: `http://localhost:5003`
-- **Billing Service**: `http://localhost:5004`
+- **Doctor Service**: `http://34.45.137.121:5002`
+- **Appointment Service**: `http://34.45.137.121:5003`
+- **Billing Service**: `http://34.45.137.121:5004`
 
 ## Scalability and Upcoming Improvements
 - **Horizontal scaling**: To accommodate increasing workloads, each service can be scaled separately.
