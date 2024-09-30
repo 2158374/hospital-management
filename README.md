@@ -26,7 +26,7 @@ The objective of this project is to develop a **microservices-based Hospital Man
 ### Installation
 1. **Clone the repository**:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/2158374/hospital-management.git
     ```
 
 2. **Navigate to the project directory**:
