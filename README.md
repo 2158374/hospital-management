@@ -45,7 +45,7 @@ The objective of this project is to develop a **microservices-based Hospital Man
 The **Hospital Management System** is structured as independent microservices that communicate through HTTP APIs. Each service manages its respective database using **SQLite** and exposes RESTful endpoints to other services. **Docker Compose** handles service orchestration, making it easy to scale, maintain, and deploy the system in different environments.
 
 ### Services Endpoints
-- **Patient Service**: `http://localhost:5001`
+- **Patient Service**: `http://34.45.137.121:5001`
 - **Doctor Service**: `http://localhost:5002`
 - **Appointment Service**: `http://localhost:5003`
 - **Billing Service**: `http://localhost:5004`
